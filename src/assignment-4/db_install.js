@@ -8,7 +8,31 @@ const con = mysql.createConnection({
 });
 
 const USERS = "CREATE TABLE IF NOT EXISTS users (userid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(10) NOT NULL, password VARCHAR(10) NOT NULL, status BIT(2) NOT NULL);";
-const STORIES = "CREATE TABLE IF NOT EXISTS stories (storyid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, story VARCHAR(30) NOT NULL, user_id SMALLINT(6) UNSIGNED NOT NULL, INDEX (userid), FOREIGN KEY (user_id) REFERENCES USERS(userid));";
+const STORIES = "CREATE TABLE IF NOT EXISTS stories (storyid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, story VARCHAR(30) NOT NULL, user_id SMALLINT(6) UNSIGNED NOT NULL, INDEX (user_id), FOREIGN KEY (userid) REFERENCES USERS(userid));";
+
+
+CREATE TABLE IF NOT EXISTS stories (
+    storyid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+    story VARCHAR(30) NOT NULL, 
+    userid SMALLINT(6) UNSIGNED, 
+    INDEX (userid), 
+    FOREIGN KEY (userid) REFERENCES USERS(userid)
+);
+
+
+CREATE TABLE parent (
+    id INT NOT NULL,
+    PRIMARY KEY (id)
+)
+
+CREATE TABLE child (
+    id INT,
+    parent_id INT,
+    INDEX par_ind (parent_id),
+    FOREIGN KEY (parent_id)
+        REFERENCES parent(id)
+        ON DELETE CASCADE
+);
 
 con.connect((err) => {
   if (err) throw console.error('error connecting: ' + err.stack);
