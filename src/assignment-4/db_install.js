@@ -9,7 +9,11 @@ const con = mysql.createConnection({
   // password: process.env.MYSQL_ADMIN_PASSWORD || 'root'
 });
 
+// prettier-ignore
+// eslint-disable-next-line max-len
 const USERS = 'CREATE TABLE IF NOT EXISTS users (userid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(10) NOT NULL, password VARCHAR(10) NOT NULL, status BIT(2) NOT NULL);';
+// prettier-ignore
+// eslint-disable-next-line max-len
 const STORIES = 'CREATE TABLE IF NOT EXISTS stories (storyid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, story VARCHAR(30) NOT NULL, userid SMALLINT(6) UNSIGNED NOT NULL, INDEX (userid), FOREIGN KEY (userid) REFERENCES users(userid));';
 
 con.connect((err) => {
@@ -42,6 +46,6 @@ con.query(STORIES, (err, result) => {
   console.log('Story table created');
 });
 
-con.end(function(err) {
+con.end((err) => {
   console.log(`Connection id ${con.threadId} is terminated!`);
 });
