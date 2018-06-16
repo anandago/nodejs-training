@@ -31,11 +31,13 @@ con.query("USE leave_the_marks", (err, result) => {
 
 con.query(USERS, (err, result) => {
   if (err) throw console.error(err.stack);
-  console.log("User table created")
+  console.log("User table created");
 });
 
 con.query(STORIES, (err, result) => {
   if (err) {
+    console.log("Story table NOT created")
+
     // Show Innodb status.
     con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
       if (err) throw console.error(err.stack);
@@ -44,7 +46,7 @@ con.query(STORIES, (err, result) => {
     });
     throw console.error(err.stack);
   }
-  console.log("Story table created")
+  console.log("Story table created");
 });
 
 con.end(function(err) {
