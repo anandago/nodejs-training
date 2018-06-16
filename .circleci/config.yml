@@ -11,9 +11,7 @@ jobs:
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: 3306
-          # MYSQL_DB: mate
           MYSQL_USER: root
-          # MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_PASSWORD: root
 
       # Specify service dependencies here if necessary
@@ -25,10 +23,8 @@ jobs:
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: 3306
-          # MYSQL_DB: mate
           MYSQL_USER: root
           MYSQL_PASSWORD: root
-          # MYSQL_ALLOW_EMPTY_PASSWORD: true
       
     working_directory: ~/repo
 
@@ -50,6 +46,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Mysql database
-          command: mysql  -h 127.0.0.1 -u root -proot
+          command: mysql -h 127.0.0.1 -P 3306 -u root -proot
       # run tests!
       - run: yarn test
