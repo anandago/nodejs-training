@@ -46,6 +46,13 @@ con.query(STORIES, (err, result) => {
   console.log("Story table created")
 });
 
+// Show Innodb status.
+con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
+  if (err) throw console.error(err.stack);
+
+  console.log("INNODB Status", result);
+});
+
 con.end(function(err) {
   console.log(`Connection id ${con.threadId} is terminated!`);
 });
