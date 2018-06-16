@@ -35,7 +35,7 @@ con.query(USERS, (err, result) => {
 });
 
 //Show TABLE STATUS.
-con.query("SHOW TABLES STATUS\\G", (err, result) => {
+con.query("SHOW TABLES STATUS", (err, result) => {
   if (err) throw console.error(err.stack);
 
   console.log("Table Status", result);
