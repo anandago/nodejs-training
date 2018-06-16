@@ -4,6 +4,15 @@
 #
 version: 2
 jobs:
+  machine:
+    pre:
+    - sudo apt-get update -y; true
+    - sudo apt-get -y remove mysql-server
+    - sudo apt-get -y install software-properties-common
+    - sudo apt-add-repository -y 'deb http://ppa.launchpad.net/ondrej/mysql-experimental/ubuntu precise main'
+    - sudo apt-get update -y; true
+    - export DEBIAN_FRONTEND=noninteractive && sudo -E apt-get -y install mysql-server
+    - sudo chown -R mysql:mysql /var/lib/mysql
   build:
     docker:
       # specify the version you desire here
