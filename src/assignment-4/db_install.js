@@ -36,7 +36,7 @@ con.query(USERS, (err, result) => {
 
 con.query(STORIES, (err, result) => {
   if (err) {
-    console.log("Story table NOT created")
+    console.log("Story table NOT created", err);
 
     // Show Innodb status.
     con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
