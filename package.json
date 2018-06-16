@@ -8,7 +8,7 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "pretest-fix": "eslint --fix --ignore-path .gitignore .",
     "prettier": "prettier --single-quote --trailing-comma es6 --print-width 80 --write --no-bracket-spacing **/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   },
   "keywords": [],
   "author": "",
