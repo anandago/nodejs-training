@@ -8,7 +8,7 @@ const con = mysql.createConnection({
 });
 
 const USERS = "CREATE TABLE IF NOT EXISTS users (userid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(10) NOT NULL, password VARCHAR(10) NOT NULL, status BIT(2) NOT NULL);";
-const STORIES = "CREATE TABLE IF NOT EXISTS stories (storyid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, story VARCHAR(30) NOT NULL, userid SMALLINT(6) UNSIGNED, INDEX (userid), FOREIGN KEY (userid) REFERENCES USERS(userid)) ENGINE = INNODB;";
+const STORIES = "CREATE TABLE IF NOT EXISTS stories (storyid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, story VARCHAR(30) NOT NULL, userid SMALLINT(6) UNSIGNED, INDEX (userid), FOREIGN KEY (userid) REFERENCES USERS(userid));";
 
 con.connect((err) => {
   if (err) throw console.error('error connecting: ' + err.stack);
@@ -17,7 +17,7 @@ con.connect((err) => {
 });
 
 // Show Engine.
-con.query("SHOW ENGINES", (err, result) => {
+con.query("SHOW ENGINE", (err, result) => {
   if (err) throw console.error(err.stack);
 
   console.log("Engine", result);
