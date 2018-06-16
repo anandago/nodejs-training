@@ -47,5 +47,7 @@ con.query(STORIES, (err, result) => {
 });
 
 con.end((err) => {
+  if (err) throw console.error(err.stack);
+
   console.log(`Connection id ${con.threadId} is terminated!`);
 });
