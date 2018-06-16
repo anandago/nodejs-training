@@ -10,9 +10,10 @@ jobs:
       - image: circleci/node:7.10
         environment:
           MYSQL_HOST: 127.0.0.1
-          MYSQL_PORT: 3306
+          MYSQL_DB: mate
           MYSQL_USER: root
-          MYSQL_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_PASSWORD: 
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -21,15 +22,14 @@ jobs:
       - image: mysql:5.7.22
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true --innodb-file-format=Barracuda
         environment:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_PORT: 3306
           MYSQL_USER: root
-          MYSQL_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
       
     working_directory: ~/repo
 
     steps:
       - checkout
+      - run: sudo apt install -y mysql-client
 
       # Download and cache dependencies
       - restore_cache:
@@ -39,8 +39,6 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
-
-      - run: sudo apt install -y mysql-client
 
       - save_cache:
           paths:
