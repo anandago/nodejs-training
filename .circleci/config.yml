@@ -40,6 +40,8 @@ jobs:
 
       - run: yarn install
 
+      - run: sudo apt install -y mysql-client
+
       - save_cache:
           paths:
             - node_modules
