@@ -16,13 +16,6 @@ con.connect((err) => {
   console.log(`Connected id: ${con.threadId}`);
 });
 
-// Show Innodb status.
-con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
-  if (err) throw console.error(err.stack);
-
-  console.log("INNODB Status", result);
-});
-
 // Create new database and use that.
 con.query("CREATE DATABASE IF NOT EXISTS leave_the_marks", (err, result) => {
   if (err) throw console.error(err.stack);
@@ -42,15 +35,16 @@ con.query(USERS, (err, result) => {
 });
 
 con.query(STORIES, (err, result) => {
-  if (err) throw console.error(err.stack);
+  if (err) {
+    // Show Innodb status.
+    con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
+      if (err) throw console.error(err.stack);
+
+      console.log("INNODB Status 123", result);
+    });
+    throw console.error(err.stack);
+  }
   console.log("Story table created")
-});
-
-// Show Innodb status.
-con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
-  if (err) throw console.error(err.stack);
-
-  console.log("INNODB Status", result);
 });
 
 con.end(function(err) {
