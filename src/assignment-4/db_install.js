@@ -16,6 +16,13 @@ con.connect((err) => {
   console.log(`Connected id: ${con.threadId}`);
 });
 
+// Show Engine.
+con.query("SHOW ENGINES \G", (err, result) => {
+  if (err) throw console.error(err.stack);
+
+  console.log("Engine", result);
+});
+
 // Create new database and use that.
 con.query("CREATE DATABASE IF NOT EXISTS leave_the_marks", (err, result) => {
   if (err) throw console.error(err.stack);
@@ -35,17 +42,8 @@ con.query(USERS, (err, result) => {
 });
 
 con.query(STORIES, (err, result) => {
-  if (err) {
-    console.log("Story table NOT created", err);
+  if (err) throw console.error(err.stack);
 
-    // Show Innodb status.
-    con.query("SHOW ENGINE INNODB STATUS", (err, result) => {
-      if (err) throw console.error(err.stack);
-
-      console.log("INNODB Status 123", result);
-    });
-    throw console.error(err.stack);
-  }
   console.log("Story table created");
 });
 
