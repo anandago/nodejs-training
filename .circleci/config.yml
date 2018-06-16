@@ -5,14 +5,21 @@
 version: 2
 jobs:
   machine:
+    services:
+      - mysql
+  database:
     pre:
-    - sudo apt-get update -y; true
-    - sudo apt-get -y remove mysql-server
-    - sudo apt-get -y install software-properties-common
-    - sudo apt-add-repository -y 'deb http://ppa.launchpad.net/ondrej/mysql-experimental/ubuntu precise main'
-    - sudo apt-get update -y; true
-    - export DEBIAN_FRONTEND=noninteractive && sudo -E apt-get -y install mysql-server
-    - sudo chown -R mysql:mysql /var/lib/mysql
+      # https://gist.github.com/mahemoff/54b31e272421472d4fb6
+      # installing mysql 5.6 (5.5 is installed by default)
+      - export DEBIAN_FRONTEND=noninteractive
+        && sudo apt-get -y remove mysql-server && sudo apt-get -y autoremove
+        && sudo apt-get -y install software-properties-common
+        && sudo apt-add-repository -y 'deb http://ppa.launchpad.net/ondrej/mysql-experimental/ubuntu precise main'
+        && sudo apt-get update
+        && sudo apt-get -y install mysql-server
+      - echo -e "[mysqld]\ninnodb_file_format = Barracuda\ninnodb_large_prefix = 1" | sudo sh -c "cat >> /etc/mysql/my.cnf"
+      - sudo cat /etc/mysql/my.cnf
+      - sudo service mysql restart
   build:
     docker:
       # specify the version you desire here
