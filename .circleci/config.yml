@@ -8,6 +8,11 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+        environment:
+          MYSQL_USER: ubuntu
+          MYSQL_PASSWORD: ubuntu
+          MYSQL_ADMIN_USER: ubuntu
+          MYSQL_ADMIN_PASSWORD: ubuntu
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -17,8 +22,6 @@ jobs:
         environment:
           MYSQL_USER: ubuntu
           MYSQL_PASSWORD: ubuntu
-          MYSQL_ADMIN_USER: ubuntu
-          MYSQL_ADMIN_PASSWORD: ubuntu
       
     working_directory: ~/repo
 
