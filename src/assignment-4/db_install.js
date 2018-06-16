@@ -1,10 +1,5 @@
 const mysql = require('mysql');
 
-console.log("Host", process.env.MYSQL_ADMIN_HOST || "127.0.0.1");
-console.log("Port", process.env.MYSQL_ADMIN_PORT || 3306);
-console.log("User", process.env.MYSQL_ADMIN_USER || "root");
-console.log("Password", process.env.MYSQL_ADMIN_PASSWORD || "root");
-
 const con = mysql.createConnection({
   host: process.env.MYSQL_ADMIN_HOST || "127.0.0.1",
   port: process.env.MYSQL_ADMIN_PORT || 3306,
@@ -19,12 +14,6 @@ con.connect((err) => {
   if (err) throw console.error('error connecting: ' + err.stack);
 
   console.log(`Connected id: ${con.threadId}`);
-});
-
-con.query("SHOW DATABASES", (err, result) => {
-  if (err) throw console.error(err.stack);
-
-  console.log("List of databases");
 });
 
 // Create new database and use that.
