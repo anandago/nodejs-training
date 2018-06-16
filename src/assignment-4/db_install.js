@@ -3,8 +3,8 @@ const mysql = require('mysql');
 const con = mysql.createConnection({
   host: process.env.MYSQL_ADMIN_HOST || "127.0.0.1",
   port: process.env.MYSQL_ADMIN_PORT || 3306,
-  user: process.env.MYSQL_ADMIN_USER || "root",
-  password: process.env.MYSQL_ADMIN_PASSWORD || "root"
+  user: process.env.MYSQL_ADMIN_USER || MYSQL_USER || "root",
+  password: process.env.MYSQL_ADMIN_PASSWORD || MYSQL_PASSWORD || "root"
 });
 
 const USERS = "CREATE TABLE IF NOT EXISTS users (userid SMALLINT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(10) NOT NULL, password VARCHAR(10) NOT NULL, status BIT(2) NOT NULL);";
