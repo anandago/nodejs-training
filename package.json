@@ -1,0 +1,29 @@
+{
+  "name": "nodejs-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node ./src/assignment-4/db_install.js",
+    "pretest": "eslint --ignore-path .gitignore .",
+    "pretest-fix": "eslint --fix --ignore-path .gitignore .",
+    "prettier": "prettier --single-quote --trailing-comma es6 --print-width 80 --write --no-bracket-spacing **/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.15.0",
+    "superagent": "^3.8.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-strongloop": "^2.1.0",
+    "prettier": "^1.12.1"
+  }
+}

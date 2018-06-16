@@ -1,0 +1,21 @@
+{{#unless city}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <img src="/images/main.jpg" class="img-responsive" alt="iLoveMyCity"/>
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="container">
+    <div class="row 321">
+      {{#each imageFileName}}
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img src="/images/{{../city}}/{{this}}"/>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{/unless}}
