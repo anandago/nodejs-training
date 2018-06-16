@@ -17,7 +17,8 @@ jobs:
         environment:
           MYSQL_USER: ubuntu
           MYSQL_PASSWORD: ubuntu
-          # MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ADMIN_USER: ubuntu
+          MYSQL_ADMIN_PASSWORD: ubuntu
       
     working_directory: ~/repo
 
