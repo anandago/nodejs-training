@@ -16,6 +16,12 @@ con.connect((err) => {
   console.log(`Connected id: ${con.threadId}`);
 });
 
+con.query("SHOW DATABASES", (err, result) => {
+  if (err) throw console.error(err.stack);
+
+  console.log("List of databases");
+});
+
 // Create new database and use that.
 con.query("CREATE DATABASE IF NOT EXISTS leave_the_marks", (err, result) => {
   if (err) throw console.error(err.stack);
