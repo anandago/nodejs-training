@@ -23,6 +23,9 @@ jobs:
       - image: mysql:5.7.22
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true --innodb-file-format=Barracuda
         environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 3306
+          # MYSQL_DB: mate
           MYSQL_USER: root
           MYSQL_PASSWORD: root
           # MYSQL_ALLOW_EMPTY_PASSWORD: true
