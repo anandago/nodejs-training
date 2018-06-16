@@ -17,7 +17,7 @@ con.connect((err) => {
 });
 
 // Show Engine.
-con.query("SHOW ENGINES \G", (err, result) => {
+con.query("SHOW ENGINES", (err, result) => {
   if (err) throw console.error(err.stack);
 
   console.log("Engine", result);
