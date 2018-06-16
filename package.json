@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node ./src/assignment-4/db_install.js",
     "pretest": "eslint --ignore-path .gitignore .",
     "pretest-fix": "eslint --fix --ignore-path .gitignore .",
     "prettier": "prettier --single-quote --trailing-comma es6 --print-width 80 --write --no-bracket-spacing **/*.js",
